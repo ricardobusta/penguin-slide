@@ -13,6 +13,8 @@ html, body {
     height: 100%;
     font-family: monospace;
     color: black;
+    overflow: hidden;
+    touch-action: none;
 }
 
 body {

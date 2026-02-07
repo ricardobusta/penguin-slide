@@ -1,6 +1,9 @@
 import { Game } from "./game/game.js";
 const canvas = document.getElementById("game");
-const ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d", {
+    alpha: false,
+    desynchronized: true,
+});
 if (!ctx)
     throw new Error("Canvas 2D context not available");
 const bgCanvas = document.getElementById("game-bg");
@@ -38,5 +41,25 @@ function resize() {
 }
 window.addEventListener("resize", resize);
 resize();
+self.addEventListener("install", (event) => {
+    event.waitUntil(caches.open("game-cache-v1").then((cache) => cache.addAll([
+        "/",
+        "/index.html",
+        "/game.js",
+        "/assets/sprites.png",
+        "/assets/sounds.mp3"
+    ])));
+});
+self.addEventListener("fetch", (event) => {
+    event.respondWith(caches.match(event.request).then((response) => response || fetch(event.request)));
+});
+canvas.addEventListener("touchstart", () => {
+    if (document.fullscreenElement == null) {
+        canvas.requestFullscreen().then(_ => { });
+    }
+});
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js");
+}
 requestAnimationFrame(loop);
 //# sourceMappingURL=main.js.map
