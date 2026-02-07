@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Penguin Slide</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="page">
+    <canvas id="game-bg"></canvas>
+    <div id="game-header">
+        <h1>Penguin Slide</h1>
+        <h2 id="level-name">Level 1 – Frozen Start</h2>
+    </div>
+
+    <main id="game-area">
+        <canvas id="game"></canvas>
+    </main>
+    <div id="game-footer">
+        <div id="score">Score: 0</div>
+
+        <div id="buttons">
+            <button id="reset">Reset</button>
+            <button id="submit">Submit</button>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="./dist/main.js"></script>
+</body>
+</html>
