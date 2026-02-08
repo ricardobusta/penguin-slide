@@ -79,35 +79,35 @@ self.addEventListener("fetch", (event: any) => {
     );
 });
 
-canvas.addEventListener("touchstart", () => {
-    if (document.fullscreenElement == null) {
-        canvas.requestFullscreen().then(_ => {
-        });
-    }
-});
+// canvas.addEventListener("touchstart", () => {
+//     if (document.fullscreenElement == null) {
+//         canvas.requestFullscreen().then(_ => {
+//         });
+//     }
+// });
 
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/sw.js");
 }
 
 // Deferred install prompt for PWA.
-if (!window.matchMedia("(display-mode: standalone)").matches) {
-    let deferredPrompt: any = null;
-
-    window.addEventListener("beforeinstallprompt", (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-    });
-
-    let installButton = document.getElementById("install-button") as HTMLButtonElement;
-
-    installButton.addEventListener("click", async () => {
-        if (!deferredPrompt) return;
-
-        deferredPrompt.prompt();
-        await deferredPrompt.userChoice;
-        deferredPrompt = null; // one-time use
-    });
-}
+// if (!window.matchMedia("(display-mode: standalone)").matches) {
+//     let deferredPrompt: any = null;
+//
+//     window.addEventListener("beforeinstallprompt", (e) => {
+//         e.preventDefault();
+//         deferredPrompt = e;
+//     });
+//
+//     let installButton = document.getElementById("install-button") as HTMLButtonElement;
+//
+//     installButton.addEventListener("click", async () => {
+//         if (!deferredPrompt) return;
+//
+//         deferredPrompt.prompt();
+//         await deferredPrompt.userChoice;
+//         deferredPrompt = null; // one-time use
+//     });
+// }
 
 requestAnimationFrame(loop);
